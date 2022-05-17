@@ -5,8 +5,8 @@
 
 typedef struct printer
 {
-	char *symbol;
-	void (*print)(va_list arg);
+char *symbol;
+void (*print)(va_list arg);
 
 } printer_t;
 
