@@ -8,19 +8,19 @@
  */
 void frees_linklistp(listp_t **head)
 {
-  listp_t *temp;
-  listp_t *curr;
+listp_t *temp;
+listp_t *curr;
 
-  if (head != NULL)
-    {
-      curr = *head;
-      while ((temp = curr) != NULL)
-	{
-	  curr = curr->next;
-	  free(temp);
-	}
-      *head = NULL;
-    }
+if (head != NULL)
+{
+curr = *head;
+while ((temp = curr) != NULL)
+{
+curr = curr->next;
+free(temp);
+}
+*head = NULL;
+}
 }
 
 /**
@@ -31,39 +31,39 @@ void frees_linklistp(listp_t **head)
  */
 size_t print_listint_safe(const listint_t *head)
 {
-  size_t nodesnumber = 0;
-  listp_t *hptr, *new, *add;
+size_t nodesnumber = 0;
+listp_t *hptr, *new, *add;
 
-  hptr = NULL;
-  while (head != NULL)
-    {
-      new = malloc(sizeof(listp_t));
+hptr = NULL;
+while (head != NULL)
+{
+new = malloc(sizeof(listp_t));
 
-      if (new == NULL)
-	exit(98);
+if (new == NULL)
+exit(98);
 
-      new->p = (void *)head;
-      new->next = hptr;
-      hptr = new;
+new->p = (void *)head;
+new->next = hptr;
+hptr = new;
 
-      add = hptr;
+add = hptr;
 
-      while (add->next != NULL)
-	{
-	  add = add->next;
-	  if (head == add->p)
-	    {
-	      printf("-> [%p] %d\n", (void *)head, head->n);
-	      frees_linklistp(&hptr);
-	      return (nodesnumber);
-	    }
-	}
+while (add->next != NULL)
+{
+add = add->next;
+if (head == add->p)
+{
+printf("-> [%p] %d\n", (void *)head, head->n);
+frees_linklistp(&hptr);
+return (nodesnumber);
+}
+}
 
-      printf("[%p] %d\n", (void *)head, head->n);
-      head = head->next;
-      nodesnumber++;
-    }
+printf("[%p] %d\n", (void *)head, head->n);
+head = head->next;
+nodesnumber++;
+}
 
-  frees_linklistp(&hptr);
-  return (nodesnumber);
+frees_linklistp(&hptr);
+return (nodesnumber);
 }
